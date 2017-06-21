@@ -14,7 +14,6 @@ class Vocabulary(object):
 		self.key=" "
 		self.value=" "
 		self.correct_answers_list=[]
-		self.true_false_list=[]
 	
 	def welcomeScreen(self):
 		print " Welcome to the vocabulary quiz program. Select one of the following word lists:"
