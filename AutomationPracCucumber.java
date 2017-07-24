@@ -4,10 +4,12 @@
  * Feature File: scenario.feature
  * Java File : TestRunner.java
  * 
+ * Revision #1: Added random sleep milliseconds to Thread.sleep in methods "click submit button" & "click dresses stock new checkbox" 
  */
 
 package com.amsa.stepDefinitions;
 
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -29,6 +31,11 @@ public class AutomationPracCucumber {
 	static WebDriver driver;
 	static Actions action;
 	static WebDriverWait wait;
+	static Random generator=new Random();
+	
+	static final int maxTime=5000;	//	in milliseconds
+	static final int minTime=2000;	//	in milliseconds
+	int timeToSleep=0;
 	
 	@Given("^Browser is Open$") 
 	public void browser_is_open() throws Throwable {
@@ -63,7 +70,9 @@ public class AutomationPracCucumber {
 	public void click_submit_button() throws Throwable {
 		driver.findElement(By.id("SubmitLogin")).click();
 		try {
-			Thread.sleep(3000);
+			timeToSleep=generator.nextInt(maxTime-minTime) + minTime;
+			System.out.println(Thread.currentThread().getStackTrace()[1].getMethodName() + " :" +  timeToSleep);
+			Thread.sleep(timeToSleep);
 		} catch(InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -81,7 +90,9 @@ public class AutomationPracCucumber {
 		driver.findElement(By.xpath(".//*[@id='layered_condition_new']")).click();
 		new Select(driver.findElement(By.id("selectProductSort"))).selectByVisibleText("Price: Lowest first");
 		try {
-			Thread.sleep(5000);
+			timeToSleep=generator.nextInt(maxTime-minTime) + minTime;
+			System.out.println(Thread.currentThread().getStackTrace()[1].getMethodName() + " :" +  timeToSleep);
+			Thread.sleep(timeToSleep);
 		} catch(InterruptedException e) {
 			e.printStackTrace();
 		}
