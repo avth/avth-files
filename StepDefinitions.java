@@ -6,9 +6,13 @@
  * 
  * Run from the TestRunner.java
  * 
+ * Revision #1:7/24/2017 
+ * Added random sleep to Threads in methods "click submit button" and "click dresses stock new checkbox".
+ * 
  */
 package com.amsa.maven.AutomationPracticeMaven;
 
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Assert;
@@ -28,6 +32,11 @@ public class StepDefinitions {
 	static WebDriver driver;
 	static Actions action;
 	static WebDriverWait wait;
+	static Random generator=new Random();
+	int timeToSleep=0;
+	
+	static final int maxTime=5000;	//	in milliseconds
+	static final int minTime=2000;	//	in milliseconds
 	
 	
 	@Given("^I successfully navigate to the url$")
@@ -56,7 +65,9 @@ public class StepDefinitions {
 	public void click_submit_button() throws Throwable {
 		driver.findElement(By.id("SubmitLogin")).click();
 		try {
-			Thread.sleep(3000);
+			timeToSleep=generator.nextInt(maxTime-minTime) + minTime;
+			System.out.println(Thread.currentThread().getStackTrace()[1].getMethodName() + " :" +  timeToSleep);
+			Thread.sleep(timeToSleep);
 		} catch(InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -74,7 +85,9 @@ public class StepDefinitions {
 		driver.findElement(By.xpath(".//*[@id='layered_condition_new']")).click();
 		new Select(driver.findElement(By.id("selectProductSort"))).selectByVisibleText("Price: Lowest first");
 		try {
-			Thread.sleep(5000);
+			timeToSleep=generator.nextInt(maxTime-minTime) + minTime;
+			System.out.println(Thread.currentThread().getStackTrace()[1].getMethodName() + " :" +  timeToSleep);
+			Thread.sleep(timeToSleep);
 		} catch(InterruptedException e) {
 			e.printStackTrace();
 		}
