@@ -1,3 +1,9 @@
+/*
+ * Selenium testcases to automate the login, adding to wishlist and logging out.
+ * 
+ * Revision #1 : Thread.sleep -> sleeps for random milliseconds between 2 and 5 seconds.
+ */
+
 package com.amsa.automationpractice;
 
 import java.io.File;
