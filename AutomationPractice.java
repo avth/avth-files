@@ -23,6 +23,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class AutomationPractice {
 	
+	static final int maxTime=5000;	//	in milliseconds
+	static final int minTime=2000;	//	in milliseconds
+	
 	static WebDriver driver;
 	Actions action;
 	static WebDriverWait wait;
@@ -31,11 +34,14 @@ public class AutomationPractice {
 	FileInputStream inputStream;
 	Sheet sheet;
 	Row row;
-	
+	static Random generator=new Random();
+		
 	String sheetName="";
 	int rowCount=0;
+	int timeToSleep=0;
 	String fileName="";
 	String fileExtensionName="";
+	
 			
 	/*
 	 * this method 
@@ -107,7 +113,9 @@ public class AutomationPractice {
 				driver.findElement(By.id("passwd")).sendKeys(row.getCell(++j).getStringCellValue());
 				driver.findElement(By.id("SubmitLogin")).click();
 				try {	
-					Thread.sleep(3000);
+					timeToSleep=generator.nextInt(maxTime-minTime) + minTime;
+					System.out.println(Thread.currentThread().getStackTrace()[1].getMethodName() + " :" +  timeToSleep);
+					Thread.sleep(timeToSleep);
 				} catch(Exception e) {e.printStackTrace(); }
 				processRequest();
 				signOut();
@@ -131,7 +139,9 @@ public class AutomationPractice {
 		new Select(driver.findElement(By.id("selectProductSort"))).selectByVisibleText("Price: Lowest first");
 		//	wait for the page to be refreshed and loaded.
 		try { 
-			Thread.sleep(3000);  
+			timeToSleep=generator.nextInt(maxTime-minTime) + minTime;
+			System.out.println(Thread.currentThread().getStackTrace()[1].getMethodName() + " :" +  timeToSleep);
+			Thread.sleep(timeToSleep);  
 		} catch(Exception e) {e.printStackTrace(); }	
 		action.moveToElement(driver.findElement(By.xpath(".//*[@id='center_column']/ul/li[1]/div/div[1]/div/a[1]/img"))).perform();
 		action.moveToElement(driver.findElement(By.xpath(".//*[@id='center_column']/ul/li[1]/div/div[3]/div[1]/a"))).click().perform();
@@ -145,7 +155,9 @@ public class AutomationPractice {
 	public void signOut() {
 		driver.findElement(By.xpath(".//*[@id='header']/div[2]/div/div/nav/div[2]/a")).click();
 		try { 
-			Thread.sleep(3000); 
+			timeToSleep=generator.nextInt(maxTime-minTime) + minTime;
+			System.out.println(Thread.currentThread().getStackTrace()[1].getMethodName() + " :" +  timeToSleep);
+			Thread.sleep(timeToSleep);
 		} catch(Exception e) {e.printStackTrace(); }
 	}
 
