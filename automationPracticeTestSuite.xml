@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Suite" parallel="false">
+  <test name="Test">
+   <parameter name="Username" value="ab1579@abc.com"/>
+  	<parameter name="Password" value="abcd1234"/>
+   	<classes>
+      <class name="com.amsa.testng.AutomationPracticeTestNG"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
