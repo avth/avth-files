@@ -1,9 +1,11 @@
 package kata;
 
 import java.util.Scanner;
+import java.io.Serializable;
 
-public class Kata {
+public class Kata implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
 	String userEntered = "";
 	static int lengthOf_OriginalString = 0;
 	static String reversedString = "";
@@ -42,8 +44,8 @@ public class Kata {
 //		Kata rs = new Kata();
 	//	rs.userEnteredString();
 		//reversedString = Kata.solution(rs.userEntered);
-		Kata.solution("world");
-		System.out.println(reversedString);
+		String revStr = Kata.solution("world");
+		System.out.println(revStr);
 		//rs.printTheString();
 	}
 }
